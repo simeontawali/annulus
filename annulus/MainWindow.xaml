@@ -1,0 +1,136 @@
+﻿<Window x:Class="annulus.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:annulus"
+        xmlns:viewModel="clr-namespace:annulus.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="AnnulusRC" Height="650" Width="1200"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Border Background="#242428">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="25"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.ColumnSpan="10"
+                    Background="#262e30"
+                    MouseDown="Border_MouseDown">
+                <Grid HorizontalAlignment="Stretch">
+                    <Label Content="AnnularRC"
+                           Foreground="Gray"
+                           FontWeight="SemiBold"/>
+
+                    <StackPanel HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+                        
+                        <Button Width="25" Height="25"
+                                Content="&#x2015;"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="Gray"
+                                FontWeight="Bold"
+                                Click="ButtonMinimize_Click"/>
+                        
+                        <Button Width="25" Height="25"
+                                Content="&#x25A0;"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="Gray"
+                                FontWeight="Bold"
+                                Click="WindowStateButton_Click"/>
+
+                        <Button Width="25" Height="25"
+                                Content="&#x2715;"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="Gray"
+                                FontWeight="Bold"
+                                Click="CloseButton_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <Border Grid.ColumnSpan="10"
+                    Grid.Row="1"
+                    Background="#2d2d30">
+
+                <StackPanel HorizontalAlignment="Left"
+                            Orientation="Horizontal">
+                    <RadioButton Content="Home"
+                                 IsChecked="True"
+                                 Height="25"
+                                 Width="100"
+                                 Foreground="White"
+                                 FontSize="14"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding HomeViewCommand}"/>
+
+                    <RadioButton Content="Control"
+                                 Height="25"
+                                 Width="100"
+                                 Foreground="White"
+                                 FontSize="14"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding ControlViewCommand}"/>
+
+                    <RadioButton Content="Camera"
+                                 Height="25"
+                                 Width="100"
+                                 Foreground="White"
+                                 FontSize="14"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding CameraViewCommand}"/>
+
+                    <RadioButton Content="Device"
+                                 Height="25"
+                                 Width="100"
+                                 Foreground="White"
+                                 FontSize="14"
+                                 Command="{Binding DeviceViewCommand}"
+                                 Style="{StaticResource MenuButtonTheme}"/>
+                    
+                    <RadioButton Content="Calibrate"
+                                 Height="25"
+                                 Width="100"
+                                 Foreground="White"
+                                 FontSize="14"
+                                 Style="{StaticResource MenuButtonTheme}"/>
+
+                </StackPanel>
+            </Border>
+
+
+            <ContentControl Grid.Row="2"
+                            Grid.ColumnSpan="10"
+                            Margin="0"
+                            Content="{Binding CurrentView}"/>
+            
+        </Grid>
+    </Border>
+    
+</Window>

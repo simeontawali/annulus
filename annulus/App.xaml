@@ -1,0 +1,45 @@
+﻿<Application x:Class="annulus.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:annulus"
+             xmlns:viewModel="clr-namespace:annulus.MVVM.ViewModel"
+             xmlns:view="clr-namespace:annulus.MVVM.View"
+             StartupUri="MainWindow.xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/PanelButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ButtonTheme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:ControlViewModel}">
+                <view:ControlView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:CameraViewModel}">
+                <view:CameraView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:USBCameraViewModel}">
+                <view:USBCameraView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:WebpageCameraViewModel}">
+                <view:WebpageCameraView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:DeviceViewModel}">
+                <view:DeviceView/>
+            </DataTemplate>
+
+
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>

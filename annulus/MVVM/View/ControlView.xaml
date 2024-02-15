@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="annulus.MVVM.View.ControlView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:annulus.MVVM.View"
+             xmlns:viewModel="clr-namespace:annulus.MVVM.ViewModel"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="640"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="480"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <StackPanel Grid.Row="1"
+                    Background="#262e30"
+                    Orientation="Horizontal">
+          
+            <RadioButton Content="Main Cam"
+                                 IsChecked="True"
+                                 Height="25"
+                                 Width="50"
+                                 Foreground="White"
+                                 FontSize="8"
+                                 Style="{StaticResource MenuButtonTheme}"
+                                 Command="{Binding WebpageCameraViewCommand}"/>
+            <RadioButton Content="USB Cam"
+                     Height="25"
+                     Width="50"
+                     Foreground="White"
+                     FontSize="8"
+                     Style="{StaticResource MenuButtonTheme}"
+                     Command="{Binding USBCameraViewCommand}"/>
+            <Button Height="25"
+                    Width="25"
+                    Style="{StaticResource ButtonTheme}">
+                <Image Source="{svgc:SvgImage Source=/Assets/settings.svg, AppName=annulus}" Height="16" Width="16"/>
+            </Button>
+
+        </StackPanel>
+        
+        
+        <!--<StackPanel Grid.Row="2"
+            Orientation="Horizontal"
+            Background="#262e30">
+            <TextBlock Text="Select Camera:"
+               Foreground="White"
+               VerticalAlignment="Center"
+               Margin="5"/>
+            <ComboBox x:Name="cameraSelectionComboBox"
+          Grid.Column="0"
+          VerticalAlignment="Center"
+          Width="250"
+          DisplayMemberPath="Name"
+          SelectionChanged="CameraSelectionComboBox_SelectionChanged"/>
+
+        </StackPanel>-->
+        <ContentControl Grid.Row="0"
+                            Grid.ColumnSpan="1"
+                            Margin="0"
+                            Content="{Binding CurrentView}"/>
+    </Grid>
+</UserControl>
