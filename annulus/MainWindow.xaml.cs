@@ -1,7 +1,9 @@
 ﻿using annulus.MVVM.View;
 using annulus.MVVM.ViewModel;
+using System.Net.Sockets;
 using System.Windows;
 using System.Windows.Input;
+using annulus.Network;
 namespace annulus
 {
     /// <summary>
@@ -12,7 +14,8 @@ namespace annulus
         public MainWindow()
         {
             InitializeComponent();
-            annulus.Network.Socket.StartGamepadProcess();
+            CommandSocket commandSource = new CommandSocket();
+            commandSource.StartGamepadProcess();
             //IItemsService itemsService = new ItemsService(); // Create or retrieve an instance
             //IWindowManager windowManager = new WindowManager(); // Create or retrieve an instance
             //ViewModelLocator viewModelLocator = new ViewModelLocator(); // Create or retrieve an instance

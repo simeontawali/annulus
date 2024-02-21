@@ -48,9 +48,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Gamepad\XInputDotNetPure\XInputInterface.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

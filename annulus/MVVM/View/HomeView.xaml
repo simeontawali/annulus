@@ -17,7 +17,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="1" Grid.Row="1" x:Name="txtControllerInput" HorizontalAlignment="Left" VerticalAlignment="Top" Height="300" Width="500" TextWrapping="Wrap"/>
+        <TextBlock Grid.Column="1" Grid.Row="1" x:Name="txtControllerInput" HorizontalAlignment="Center" VerticalAlignment="Top" Height="300" Width="500" TextWrapping="Wrap"/>
 
         <Border Grid.RowSpan="3"
                 BorderThickness="0.1"

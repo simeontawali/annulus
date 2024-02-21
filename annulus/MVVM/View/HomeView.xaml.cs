@@ -4,6 +4,8 @@ using System.Text;
 using System.Windows;
 using System.Windows.Threading;
 using XInputDotNetPure; // Make sure to reference XInputDotNetPure
+using annulus.MVVM.ViewModel;
+using annulus.MVVM.View;
 
 
 namespace annulus.MVVM.View
