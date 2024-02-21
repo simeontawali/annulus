@@ -1,14 +1,7 @@
 ﻿using annulus.MVVM.View;
-using System.Text;
+using annulus.MVVM.ViewModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 namespace annulus
 {
     /// <summary>
@@ -19,6 +12,16 @@ namespace annulus
         public MainWindow()
         {
             InitializeComponent();
+            annulus.Network.Socket.StartGamepadProcess();
+            //IItemsService itemsService = new ItemsService(); // Create or retrieve an instance
+            //IWindowManager windowManager = new WindowManager(); // Create or retrieve an instance
+            //ViewModelLocator viewModelLocator = new ViewModelLocator(); // Create or retrieve an instance
+
+            //// Now, you can pass the required parameters to the constructor
+            //var mainViewModel = new MainViewModel(itemsService, windowManager, viewModelLocator);
+
+            //// Set the DataContext for this window
+            //this.DataContext = mainViewModel;
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)

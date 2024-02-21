@@ -12,9 +12,9 @@
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip">
 
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <viewModel:MainViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
 
     <Border Background="#242428">
         <Grid>

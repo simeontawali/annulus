@@ -43,7 +43,8 @@
                      Command="{Binding USBCameraViewCommand}"/>
             <Button Height="25"
                     Width="25"
-                    Style="{StaticResource ButtonTheme}">
+                    Style="{StaticResource ButtonTheme}"
+                    Command="{Binding OpenSettingsWindowCommand}">
                 <Image Source="{svgc:SvgImage Source=/Assets/settings.svg, AppName=annulus}" Height="16" Width="16"/>
             </Button>
 

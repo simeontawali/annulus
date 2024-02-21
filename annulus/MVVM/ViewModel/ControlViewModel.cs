@@ -1,17 +1,12 @@
 ﻿using annulus.Core;
 using annulus.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media.Media3D;
 
 namespace annulus.MVVM.ViewModel
 {
     class ControlViewModel : ObservableObject
     {
+
         public RelayCommand USBCameraViewCommand { get; set; }
         public RelayCommand WebpageCameraViewCommand { get; set; }
         public USBCameraViewModel USBVM { get; set; }
@@ -27,10 +22,9 @@ namespace annulus.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
-
         public ControlViewModel()
         {
-
+            
             WebpageVM = new WebpageCameraViewModel();
             USBVM = new USBCameraViewModel();
 

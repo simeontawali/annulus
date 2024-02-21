@@ -32,9 +32,17 @@ namespace annulus.MVVM.ViewModel
             }
         }
 
+        private readonly IWindowManager _windowManager;
+        private readonly ViewModelLocator _viewModelLocator;
+        public IItemsService ItemsService { get; set; }
+        public RelayCommand OpenSettingsWindowCommand { get; set; }
 
-        public MainViewModel()
+        public MainViewModel(IItemsService itemsService, IWindowManager WindowManager, ViewModelLocator viewModelLocator)
         {
+            _windowManager = WindowManager;
+            _viewModelLocator = viewModelLocator;
+            ItemsService = itemsService;
+            OpenSettingsWindowCommand = new RelayCommand(o => { _windowManager.ShowWindow(_viewModelLocator.SettingsViewModel); }, o => true);
 
             HomeVM = new HomeViewModel();
             ControlVM = new ControlViewModel();

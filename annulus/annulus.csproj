@@ -32,6 +32,30 @@
   <ItemGroup>
     <Folder Include="MVVM\Model\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="XInputDotNetPure">
+      <HintPath>..\..\..\..\OneDrive - Grove City College\Desktop\SENIOR DESIGN\Recources\XInputDotNet-2017.04-2\XInputDotNet-2017.04-2\XInputUnity5\Assets\XInputDotNet\Plugins\XInputDotNetPure.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Gamepad\XInputDotNetPure\XInputInterface.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
 	
 
 </Project>
