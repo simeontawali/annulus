@@ -1,6 +1,5 @@
 ﻿using annulus.MVVM.View;
 using annulus.MVVM.ViewModel;
-using System.Net.Sockets;
 using System.Windows;
 using System.Windows.Input;
 using annulus.Network;
@@ -54,7 +53,7 @@ namespace annulus
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            annulus.MVVM.View.VideoFeedControl.StopAllVideoFeeds();
+            VideoFeedControl.StopAllVideoFeeds();
             Application.Current.Shutdown();
         }
      

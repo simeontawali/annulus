@@ -12,13 +12,15 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
+            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
-        
+
         <local:VideoFeedControl x:Name="videoFeedControl"
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 Margin="10"/>
-        <!--<StackPanel Grid.Row="1"
+
+        <StackPanel Grid.Row="1"
                     Orientation="Horizontal"
                     Background="#262e30">
             <TextBlock Text="Select Camera:"
@@ -31,7 +33,6 @@
                   Width="250"
                   DisplayMemberPath="Name"
                   SelectionChanged="CameraSelectionComboBox_SelectionChanged"/>
-
-        </StackPanel>-->
+        </StackPanel>
     </Grid>
 </UserControl>

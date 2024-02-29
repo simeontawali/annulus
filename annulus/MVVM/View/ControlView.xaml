@@ -49,8 +49,7 @@
             </Button>
 
         </StackPanel>
-        
-        
+
         <!--<StackPanel Grid.Row="2"
             Orientation="Horizontal"
             Background="#262e30">
@@ -64,8 +63,8 @@
           Width="250"
           DisplayMemberPath="Name"
           SelectionChanged="CameraSelectionComboBox_SelectionChanged"/>
-
         </StackPanel>-->
+
         <ContentControl Grid.Row="0"
                             Grid.ColumnSpan="1"
                             Margin="0"

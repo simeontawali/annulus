@@ -9,6 +9,10 @@ namespace annulus.Network
 {
     internal class CommandSocket
     {
+        //private string host { get; set; }
+        //private int port { get; set; }
+
+
         public async void StartGamepadProcess()
         {
             string host = "169.254.49.103"; // Change to your Raspberry Pi's IP

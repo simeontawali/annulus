@@ -25,19 +25,19 @@ namespace annulus.MVVM.View
         {
             // Enumerate video devices
             videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-            //cameraSelectionComboBox.ItemsSource = videoDevices;
+            cameraSelectionComboBox.ItemsSource = videoDevices;
             if (videoDevices.Count > 0)
             {
-                //cameraSelectionComboBox.SelectedIndex = 0; // Automatically select the first camera
+                cameraSelectionComboBox.SelectedIndex = 0; // Automatically select the first camera
             }
         }
 
         private void CameraSelectionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (true)   //cameraSelectionComboBox.SelectedItem is FilterInfo selectedCamera)
+            if (cameraSelectionComboBox.SelectedItem is FilterInfo selectedCamera)
             {
                 StopVideoFeed();
-                //StartVideoFeed(selectedCamera.MonikerString);
+                StartVideoFeed(selectedCamera.MonikerString);
             }
             else
             {
