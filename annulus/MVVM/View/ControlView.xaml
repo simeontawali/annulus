@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:annulus.MVVM.View"
              xmlns:viewModel="clr-namespace:annulus.MVVM.ViewModel"
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
-             mc:Ignorable="d" 
+             xmlns:vlc="clr-namespace:LibVLCSharp.WPF;assembly=LibVLCSharp.WPF"
+             mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="1200">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -25,22 +26,17 @@
         <StackPanel Grid.Row="1"
                     Background="#262e30"
                     Orientation="Horizontal">
-          
-            <RadioButton Content="Main Cam"
-                                 IsChecked="True"
-                                 Height="25"
-                                 Width="50"
-                                 Foreground="White"
-                                 FontSize="8"
-                                 Style="{StaticResource MenuButtonTheme}"
-                                 Command="{Binding WebpageCameraViewCommand}"/>
-            <RadioButton Content="USB Cam"
-                     Height="25"
-                     Width="50"
-                     Foreground="White"
-                     FontSize="8"
-                     Style="{StaticResource MenuButtonTheme}"
-                     Command="{Binding USBCameraViewCommand}"/>
+
+            <ComboBox x:Name="sourceSelector" 
+                      SelectionChanged="SourceSelector_SelectionChanged"
+                      Width="150">
+            </ComboBox>
+            <!--<Button x:Name="toggleFullscreenButton" 
+                    Content="Full" 
+                    Click="ToggleFullscreenButton_Click"
+                    Height="25"
+                    Width="25"/>-->
+            
             <Button Height="25"
                     Width="25"
                     Style="{StaticResource ButtonTheme}"
@@ -50,24 +46,10 @@
 
         </StackPanel>
 
-        <!--<StackPanel Grid.Row="2"
-            Orientation="Horizontal"
-            Background="#262e30">
-            <TextBlock Text="Select Camera:"
-               Foreground="White"
-               VerticalAlignment="Center"
-               Margin="5"/>
-            <ComboBox x:Name="cameraSelectionComboBox"
-          Grid.Column="0"
-          VerticalAlignment="Center"
-          Width="250"
-          DisplayMemberPath="Name"
-          SelectionChanged="CameraSelectionComboBox_SelectionChanged"/>
-        </StackPanel>-->
+        <vlc:VideoView x:Name="videoView" 
+                       HorizontalAlignment="Stretch" 
+                       VerticalAlignment="Stretch" Grid.Row="0"
+                            Grid.ColumnSpan="1"/>
 
-        <ContentControl Grid.Row="0"
-                            Grid.ColumnSpan="1"
-                            Margin="0"
-                            Content="{Binding CurrentView}"/>
     </Grid>
 </UserControl>

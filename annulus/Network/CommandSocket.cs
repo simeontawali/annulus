@@ -15,7 +15,7 @@ namespace annulus.Network
 
         public async void StartGamepadProcess()
         {
-            string host = "169.254.49.103"; // Change to your Raspberry Pi's IP
+            string host = "bpmi.local"; // Change to your Raspberry Pi's IP
             int port = 12345;
             try
             {

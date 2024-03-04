@@ -54,6 +54,7 @@ namespace annulus
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             VideoFeedControl.StopAllVideoFeeds();
+            //ControlView.StopCameraFeed();
             Application.Current.Shutdown();
         }
      
