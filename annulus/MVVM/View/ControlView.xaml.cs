@@ -11,7 +11,7 @@ namespace annulus.MVVM.View
     public partial class ControlView : UserControl
     {
         private LibVLC _libVLC;
-        private MediaPlayer _mediaPlayer;
+        private MediaPlayer _mediaPlayer; 
         public bool isFullscreen = false;
         public bool isPlaying = false;
         public Size oldVideoSize;
@@ -32,7 +32,19 @@ namespace annulus.MVVM.View
             _mediaPlayer = new MediaPlayer(_libVLC) { EnableHardwareDecoding = true };
             videoView.MediaPlayer = _mediaPlayer;
             sourceSelector.Items.Add("Open Network Stream");
-            GetAllConnectedCameras();        }
+            GetAllConnectedCameras();        
+        }
+        public void refreshCameras()
+        {
+            StopCameraFeed();
+            sourceSelector.Items.Clear();
+            sourceSelector.Items.Add("Open Network Stream");
+            GetAllConnectedCameras();
+        }
+        private void RefreshCameras_Click(object sender, RoutedEventArgs e)
+        {
+            refreshCameras();
+        }
         private void SourceSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (_mediaPlayer.IsPlaying)
@@ -111,9 +123,12 @@ namespace annulus.MVVM.View
             _mediaPlayer.Play(media);
 
         }
-        public static void StopCameraFeed()
+        private void StopCameraFeed()
         {
-
+            if (_mediaPlayer.IsPlaying)
+            {
+                _mediaPlayer.Stop();
+            }
         }
     }
 }

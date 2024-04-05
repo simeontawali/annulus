@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Threading.Tasks;
 using annulus.Gamepad.XInputDotNetPure;
 using System.Windows;
+using System.Collections.Generic;
 
 namespace annulus.Network
 {
@@ -11,7 +12,7 @@ namespace annulus.Network
     {
         //private string host { get; set; }
         //private int port { get; set; }
-
+        private CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
         public async void StartGamepadProcess()
         {
@@ -21,66 +22,86 @@ namespace annulus.Network
             {
                 await Task.Run(() =>
                 {
-                    try
+                    while (!cancellationTokenSource.Token.IsCancellationRequested) 
                     {
-                        using (var client = new TcpClient(host, port))
-                        using (var stream = client.GetStream())
+                        try
                         {
-                            while (true)
+                            using (var client = new TcpClient(host, port))
+                            using (var stream = client.GetStream())
                             {
-                                GamePadState state = GamePad.GetState(PlayerIndex.One);
-                                if (!state.IsConnected) continue;
-
-                                var controllerValues = new
+                                while (!cancellationTokenSource.Token.IsCancellationRequested)
                                 {
-                                    LeftThumb = new List<float> { state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y },
-                                    RightThumb = new List<float> { state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y },
-                                    Triggers = new List<float> { state.Triggers.Left, state.Triggers.Right },
-                                    Buttons = new List<int>
+                                    GamePadState state = GamePad.GetState(PlayerIndex.One);
+                                    if (!state.IsConnected) continue;
+
+                                    var controllerValues = new
+                                    {
+                                        LeftThumb = new List<float> { state.ThumbSticks.Left.X, state.ThumbSticks.Left.Y },
+                                        RightThumb = new List<float> { state.ThumbSticks.Right.X, state.ThumbSticks.Right.Y },
+                                        Triggers = new List<float> { state.Triggers.Left, state.Triggers.Right },
+                                        Buttons = new List<int>
                                 {
                                 state.Buttons.A == ButtonState.Pressed ? 1 : 0,
                                 state.Buttons.B == ButtonState.Pressed ? 1 : 0,
                                 state.Buttons.X == ButtonState.Pressed ? 1 : 0,
                                 state.Buttons.Y == ButtonState.Pressed ? 1 : 0
                                 },
-                                    Shoulders = new List<int>
+                                        Shoulders = new List<int>
                                 {
                                 state.Buttons.LeftShoulder == ButtonState.Pressed ? 1 : 0,
                                 state.Buttons.RightShoulder == ButtonState.Pressed ? 1 : 0
                                 },
-                                    DPad = new List<int>
+                                        DPad = new List<int>
                                 {
                                 state.DPad.Up == ButtonState.Pressed ? 1 : 0,
                                 state.DPad.Down == ButtonState.Pressed ? 1 : 0,
                                 state.DPad.Left == ButtonState.Pressed ? 1 : 0,
                                 state.DPad.Right == ButtonState.Pressed ? 1 : 0
                                 },
-                                    Other = new List<int>
+                                        Other = new List<int>
                                 {
                                 state.Buttons.Start == ButtonState.Pressed ? 1 : 0,
                                 state.Buttons.Back == ButtonState.Pressed ? 1 : 0
                                 }
-                                };
+                                    };
 
-                                string jsonData = JsonSerializer.Serialize(controllerValues);
-                                byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonData);
-                                stream.Write(byteData, 0, byteData.Length);
-                                Thread.Sleep(100); // Control the frequency of updates
+                                    string jsonData = JsonSerializer.Serialize(controllerValues);
+                                    byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonData);
+                                    stream.Write(byteData, 0, byteData.Length);
+                                    Thread.Sleep(100); // Control the frequency of updates
+                                }
                             }
                         }
-                    }
-                    catch (Exception ex2)
-                    {
-                        Console.WriteLine($"Failed to connect or send data: {ex2.Message}.\nRetrying in 10 seconds...\n");
-                        Task.Delay(10000).Wait(); // Wait for 10 seconds before retrying
-                    }
-
-                });
+                        catch (Exception ex2)
+                        {
+                            Console.WriteLine($"Failed to connect or send data: {ex2.Message}.\nRetrying in 10 seconds...\n");
+                            Task.Delay(10000).Wait(); // Wait for 10 seconds before retrying
+                        }
+                }
+                }, cancellationTokenSource.Token);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
+        public void StopGamepadProcess()
+        {
+            cancellationTokenSource.Cancel();
+        }
+
+        public void RefreshConnection()
+        {
+            // stop current process
+            StopGamepadProcess();
+
+            // reset cancellation token source to allow a new connection attempt
+            cancellationTokenSource = new CancellationTokenSource();
+
+            // restart process
+            StartGamepadProcess();
+        }
+
     }
 }

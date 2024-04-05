@@ -10,10 +10,11 @@ namespace annulus
     /// </summary>
     public partial class MainWindow : Window
     {
+        CommandSocket commandSource = new CommandSocket();
         public MainWindow()
         {
-            InitializeComponent();
-            CommandSocket commandSource = new CommandSocket();
+            InitializeComponent(); 
+             
             commandSource.StartGamepadProcess();
             //IItemsService itemsService = new ItemsService(); // Create or retrieve an instance
             //IWindowManager windowManager = new WindowManager(); // Create or retrieve an instance
@@ -38,7 +39,10 @@ namespace annulus
         {
             Application.Current.MainWindow.WindowState = WindowState.Minimized;
         }
-
+        private void ControlRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            commandSource.RefreshConnection();
+        }
         private void WindowStateButton_Click(object sender, RoutedEventArgs e)
         {
             if (Application.Current.MainWindow.WindowState != WindowState.Maximized)
@@ -53,6 +57,7 @@ namespace annulus
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
+            commandSource.StopGamepadProcess();
             VideoFeedControl.StopAllVideoFeeds();
             //ControlView.StopCameraFeed();
             Application.Current.Shutdown();

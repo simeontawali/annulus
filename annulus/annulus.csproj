@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\refresh-double.svg" />
     <None Remove="Assets\settings.svg" />
   </ItemGroup>
 
@@ -28,6 +29,7 @@
   <ItemGroup>
     <Resource Include="Assets\icons8.png" />
     <Resource Include="Assets\logo.png" />
+    <Resource Include="Assets\refresh-double.svg" />
     <Resource Include="Assets\settings.svg">
       <CopyToOutputDirectory></CopyToOutputDirectory>
     </Resource>
