@@ -65,7 +65,9 @@ namespace annulus.Network
                                 }
                                     };
 
-                                    string jsonData = JsonSerializer.Serialize(controllerValues);
+                                    // string jsonData = JsonSerializer.Serialize(controllerValues);
+                                    // UPDATE: added delimiter
+                                    string jsonData = JsonSerializer.Serialize(controllerValues) + "\n";
                                     byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonData);
                                     stream.Write(byteData, 0, byteData.Length);
                                     Thread.Sleep(100); // Control the frequency of updates
