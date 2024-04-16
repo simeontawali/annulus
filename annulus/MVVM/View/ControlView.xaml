@@ -59,7 +59,7 @@
         <vlc:VideoView x:Name="videoView" 
                        HorizontalAlignment="Stretch" 
                        VerticalAlignment="Stretch" Grid.Row="0"
-                            Grid.ColumnSpan="1"/>
+                       Grid.ColumnSpan="1"/>
 
     </Grid>
 </UserControl>

@@ -11,7 +11,7 @@ namespace annulus.MVVM.View
     public partial class ControlView : UserControl
     {
         private LibVLC _libVLC;
-        private MediaPlayer _mediaPlayer; 
+        private LibVLCSharp.Shared.MediaPlayer _mediaPlayer; 
         public bool isFullscreen = false;
         public bool isPlaying = false;
         public Size oldVideoSize;
