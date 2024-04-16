@@ -117,7 +117,10 @@ namespace annulus.MVVM.View
             {
                 $"http://{hostname}:{port}{path}",
                 ":network-caching=200",
-                ":live-caching=0"
+                ":live-caching=0",
+                "--video-filter=transform",
+                "--transform-type=rotate-180" // This will rotate the video by 180 degrees
+
                 };
             var media = new Media(_libVLC, mediaOptions[0], FromType.FromLocation, mediaOptions.Skip(1).ToArray());
             _mediaPlayer.Play(media);
