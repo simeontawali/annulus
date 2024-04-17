@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="Assets\refresh-double.svg" />
     <None Remove="Assets\settings.svg" />
+    <None Remove="Assets\video-camera-off.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +34,7 @@
     <Resource Include="Assets\settings.svg">
       <CopyToOutputDirectory></CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\video-camera-off.svg" />
   </ItemGroup>
 
   <ItemGroup>
