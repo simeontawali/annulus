@@ -34,7 +34,7 @@ namespace annulus.MVVM.View
             //videoView1.MediaPlayer = _mediaPlayer1;
             //videoView2.MediaPlayer = _mediaPlayer2;
             sourceSelector1.Items.Add("Open Network Stream");
-            sourceSelector2.Items.Add("Click Refresh For Cameras");
+            sourceSelector2.Items.Add("Click refresh for cameras");
             //sourceSelector2.Items.Add("Open Network Stream");
             //GetAllConnectedCameras();
         }
@@ -102,7 +102,7 @@ namespace annulus.MVVM.View
                 MediaPlayer2.Stop();
             }
             var selectedItem = sourceSelector2.SelectedItem as string; // MRL is directly used
-            if (selectedItem != null)
+            if (selectedItem != null && selectedItem != "Click refresh for cameras")
             {
                 OpenCaptureDevice(selectedItem);
             }

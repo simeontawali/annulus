@@ -5,6 +5,7 @@ using System.Windows.Input;
 using LibVLCSharp.Shared;
 using LibVLCSharp.WPF;
 using System.Management;
+using System.Windows.Media;
 
 namespace annulus.MVVM.View
 {
@@ -30,12 +31,25 @@ namespace annulus.MVVM.View
             //oldVideoLocation = videoView.Location;
 
             _libVLC = new LibVLC();
-            _mediaPlayer = new MediaPlayer(_libVLC) { EnableHardwareDecoding = true };
+            //_mediaPlayer = new MediaPlayer(_libVLC) { EnableHardwareDecoding = true };
             videoView.MediaPlayer = _mediaPlayer;
             sourceSelector.Items.Add("Open Network Stream");
-            sourceSelector.Items.Add("Click Refresh For Cameras");
-            GetAllConnectedCameras();        
+            sourceSelector.Items.Add("Click refresh for cameras");
+            //GetAllConnectedCameras();        
         }
+        private LibVLCSharp.Shared.MediaPlayer MediaPlayer0
+        {
+            get
+            {
+                if (_mediaPlayer == null)
+                {
+                    _mediaPlayer = new LibVLCSharp.Shared.MediaPlayer(_libVLC) { EnableHardwareDecoding = true };
+                    videoView.MediaPlayer = _mediaPlayer;
+                }
+                return _mediaPlayer;
+            }
+        }
+
         public void refreshCameras()
         {
             StopCameraFeed();
@@ -56,16 +70,16 @@ namespace annulus.MVVM.View
 
         private void SourceSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_mediaPlayer.IsPlaying)
+            if (MediaPlayer0.IsPlaying)
             {
-                _mediaPlayer.Stop();
+                MediaPlayer0.Stop();
             }
             var selectedItem = sourceSelector.SelectedItem as string; // MRL is directly used
             if (selectedItem == "Open Network Stream")
             {
                 OpenNetworkStream();
             }
-            else
+            else if (selectedItem != null && selectedItem != "Click refresh for cameras")
             {
                 OpenCaptureDevice(selectedItem);
             }
@@ -80,39 +94,56 @@ namespace annulus.MVVM.View
             //}
         }
 
-        private void GetAllConnectedCameras()
+        //private void GetAllConnectedCameras()
+        //{
+        //    using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE (PNPClass = 'Image' OR PNPClass = 'Camera')"))
+        //    {
+        //        foreach (var device in searcher.Get())
+        //        {
+        //            Application.Current.Dispatcher.Invoke(() =>
+        //            {
+        //                sourceSelector.Items.Add(device["Caption"].ToString());
+        //            });
+        //        }
+        //    }
+        //}
+        private async void GetAllConnectedCameras()
         {
-            using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE (PNPClass = 'Image' OR PNPClass = 'Camera')"))
+            await Task.Run(() =>
             {
-                foreach (var device in searcher.Get())
+                using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PnPEntity WHERE (PNPClass = 'Image' OR PNPClass = 'Camera')"))
                 {
-                    Application.Current.Dispatcher.Invoke(() =>
+                    foreach (var device in searcher.Get())
                     {
-                        sourceSelector.Items.Add(device["Caption"].ToString());
-                    });
+                        Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            sourceSelector.Items.Add(device["Caption"].ToString());
+                        });
+                    }
                 }
-            }
+            });
         }
+
 
         private void OpenCaptureDevice(string deviceName)
         {
-            if (_mediaPlayer.IsPlaying)
+            if (MediaPlayer0.IsPlaying)
             {
-                _mediaPlayer.Stop();
+                MediaPlayer0.Stop();
             }
             var mediaOptions = new string[] { $"--dshow-vdev={deviceName}", 
                 "--live-caching=0" ,":dshow-size=1280x720",
                      ":dshow-aspect-ratio=16\\:9", ":dshow-adev=none",":dshow-fps=30"};
             var media = new Media(_libVLC, "dshow://", FromType.FromLocation, mediaOptions);
-            _mediaPlayer.Play(media);
+            MediaPlayer0.Play(media);
         }
 
 
         private void OpenNetworkStream()
         {
-            if (_mediaPlayer.IsPlaying)
+            if (MediaPlayer0.IsPlaying)
             {
-                _mediaPlayer.Stop();
+                MediaPlayer0.Stop();
             }
             // for testing
             //var media = new Media(_libVLC, "http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8", FromType.FromLocation);
@@ -132,15 +163,20 @@ namespace annulus.MVVM.View
 
                 };
             var media = new Media(_libVLC, mediaOptions[0], FromType.FromLocation, mediaOptions.Skip(1).ToArray());
-            _mediaPlayer.Play(media);
+            MediaPlayer0.Play(media);
 
         }
         private void StopCameraFeed()
         {
-            if (_mediaPlayer.IsPlaying)
+            if (_mediaPlayer?.IsPlaying == true)
             {
                 _mediaPlayer.Stop();
             }
+            if (MediaPlayer0.IsPlaying)
+            {
+                MediaPlayer0.Stop();
+            }
+
         }
     }
 }
