@@ -10,14 +10,15 @@
              d:DesignHeight="600" d:DesignWidth="1200">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="600"/>
-            <ColumnDefinition Width="600"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="337.5"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="25"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="200"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="1"
