@@ -12,7 +12,7 @@ namespace annulus.MVVM.View
     public partial class ControlView : UserControl
     {
         private LibVLC _libVLC;
-        private LibVLCSharp.Shared.MediaPlayer _mediaPlayer; 
+        private LibVLCSharp.Shared.MediaPlayer _mediaPlayer0; 
 
         //public bool isFullscreen = false;
         //public bool isPlaying = false;
@@ -32,7 +32,7 @@ namespace annulus.MVVM.View
 
             _libVLC = new LibVLC();
             //_mediaPlayer = new MediaPlayer(_libVLC) { EnableHardwareDecoding = true };
-            videoView.MediaPlayer = _mediaPlayer;
+            videoView.MediaPlayer = _mediaPlayer0;
             sourceSelector.Items.Add("Open Network Stream");
             sourceSelector.Items.Add("Click refresh for cameras");
             //GetAllConnectedCameras();        
@@ -41,12 +41,12 @@ namespace annulus.MVVM.View
         {
             get
             {
-                if (_mediaPlayer == null)
+                if (_mediaPlayer0 == null)
                 {
-                    _mediaPlayer = new LibVLCSharp.Shared.MediaPlayer(_libVLC) { EnableHardwareDecoding = true };
-                    videoView.MediaPlayer = _mediaPlayer;
+                    _mediaPlayer0 = new LibVLCSharp.Shared.MediaPlayer(_libVLC) { EnableHardwareDecoding = true };
+                    videoView.MediaPlayer = _mediaPlayer0;
                 }
-                return _mediaPlayer;
+                return _mediaPlayer0;
             }
         }
 
@@ -168,9 +168,9 @@ namespace annulus.MVVM.View
         }
         private void StopCameraFeed()
         {
-            if (_mediaPlayer?.IsPlaying == true)
+            if (_mediaPlayer0?.IsPlaying == true)
             {
-                _mediaPlayer.Stop();
+                _mediaPlayer0.Stop();
             }
             if (MediaPlayer0.IsPlaying)
             {

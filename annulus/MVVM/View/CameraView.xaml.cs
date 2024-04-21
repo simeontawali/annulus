@@ -5,6 +5,7 @@ using System.Management;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using annulus;
 
 
 namespace annulus.MVVM.View

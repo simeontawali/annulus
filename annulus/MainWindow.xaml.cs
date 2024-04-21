@@ -58,7 +58,7 @@ namespace annulus
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             commandSource.StopGamepadProcess();
-            VideoFeedControl.StopAllVideoFeeds();
+            //VideoFeedControl.StopAllVideoFeeds();
             //ControlView.StopCameraFeed();
             Application.Current.Shutdown();
         }
