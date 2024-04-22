@@ -32,7 +32,7 @@
                 </MultiTrigger.Setters>
             </MultiTrigger>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="#21a452"/>
+                <Setter Property="Background" Value="#75000e"/>
             </Trigger>
         </Style.Triggers>
     </Style>

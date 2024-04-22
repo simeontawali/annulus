@@ -30,7 +30,7 @@ namespace annulus.Services
         }
         public void CloseWindow()
         {
-            MessageBox.Show(messageBoxText: "Window Closed");
+            //MessageBox.Show(messageBoxText: "Application Terminated");
         }
     }
 }

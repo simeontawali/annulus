@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\media-image-folder.svg" />
     <None Remove="Assets\refresh-double.svg" />
     <None Remove="Assets\settings.svg" />
     <None Remove="Assets\video-camera-off.svg" />
@@ -30,6 +31,7 @@
   <ItemGroup>
     <Resource Include="Assets\icons8.png" />
     <Resource Include="Assets\logo.png" />
+    <Resource Include="Assets\media-image-folder.svg" />
     <Resource Include="Assets\refresh-double.svg" />
     <Resource Include="Assets\settings.svg">
       <CopyToOutputDirectory></CopyToOutputDirectory>

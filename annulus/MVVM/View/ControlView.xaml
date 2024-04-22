@@ -11,64 +11,101 @@
              d:DesignHeight="600" d:DesignWidth="1200">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="640"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="480"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
 
+        <Grid Grid.Row="1"
+              Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="1"
-                    Background="#262e30"
-                    Orientation="Horizontal">
-
-            <ComboBox x:Name="sourceSelector" 
-                      SelectionChanged="SourceSelector_SelectionChanged"
-                      Width="150">
-            </ComboBox>
-            <!--<Button x:Name="toggleFullscreenButton" 
-                    Content="Full" 
-                    Click="ToggleFullscreenButton_Click"
-                    Height="25"
-                    Width="25"/>-->
             <Button Height="25"
-                    Width="25"
-                    
-                    Background="Transparent"
+                    Width="150"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Grid.Column="0"
+                    Background="#C20000"
+                    FontSize="14"
+                    Foreground="White"
                     BorderThickness="0"
-                    Foreground="Gray"
                     FontWeight="Bold"
-                    Click="RefreshCameras_Click">
-                <Image Source="{svgc:SvgImage Source=/Assets/refresh-double.svg, AppName=annulus}" Height="16" Width="16"/>
+                    Content="Screenshot"
+                    Click="CaptureSnapshot0_Click">
             </Button>
             <Button Height="25"
-                    Width="25"       
-                    Background="Transparent"
+                    Width="150"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Background="#C20000"
+                    FontSize="14"
+                    Foreground="White"
                     BorderThickness="0"
-                    Foreground="Gray"
                     FontWeight="Bold"
-                    Click="StopCameraFeed_Click">
-                <Image Source="{svgc:SvgImage Source=/Assets/video-camera-off.svg, AppName=annulus}" Height="16" Width="16"/>
+                    Content="Fullscreen">
             </Button>
 
+        </Grid>
+        <Grid Grid.Row="1"
+              Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
             <Button Height="25"
-                    Width="25"
-                    Style="{StaticResource ButtonTheme}"
-                    Command="{Binding OpenSettingsWindowCommand}">
-                <Image Source="{svgc:SvgImage Source=/Assets/settings.svg, AppName=annulus}" Height="16" Width="16"/>
+                    Width="150"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Grid.Column="0"
+                    Background="#C20000"
+                    FontSize="14"
+                    Foreground="White"
+                    BorderThickness="0"
+                    FontWeight="Bold"
+                    Content="Screenshot"
+                    Click="CaptureSnapshot1_Click">
             </Button>
+            <Button Height="25"
+                    Width="150"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+                    Background="#C20000"
+                    FontSize="14"
+                    Foreground="White"
+                    BorderThickness="0"
+                    FontWeight="Bold"
+                    Content="Fullscreen">
+            </Button>
+        </Grid>
 
-        </StackPanel>
+        <Grid Grid.Row="2"
+              Grid.Column="0">
+        </Grid>
+        
+        
 
-        <vlc:VideoView x:Name="videoView" 
+
+        <vlc:VideoView x:Name="videoView0" 
                        HorizontalAlignment="Stretch" 
                        VerticalAlignment="Stretch" Grid.Row="0"
                        Grid.ColumnSpan="1"/>
+        <vlc:VideoView x:Name="videoView1" 
+                       HorizontalAlignment="Stretch" 
+                       VerticalAlignment="Stretch" Grid.Row="0"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="1"/>
+
 
     </Grid>
 </UserControl>

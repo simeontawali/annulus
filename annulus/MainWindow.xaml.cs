@@ -3,6 +3,7 @@ using annulus.MVVM.ViewModel;
 using System.Windows;
 using System.Windows.Input;
 using annulus.Network;
+using annulus.Core;
 namespace annulus
 {
     /// <summary>
@@ -11,10 +12,10 @@ namespace annulus
     public partial class MainWindow : Window
     {
         CommandSocket commandSource = new CommandSocket();
+
         public MainWindow()
         {
-            InitializeComponent(); 
-             
+            InitializeComponent();
             commandSource.StartGamepadProcess();
             //IItemsService itemsService = new ItemsService(); // Create or retrieve an instance
             //IWindowManager windowManager = new WindowManager(); // Create or retrieve an instance
@@ -58,8 +59,7 @@ namespace annulus
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             commandSource.StopGamepadProcess();
-            //VideoFeedControl.StopAllVideoFeeds();
-            //ControlView.StopCameraFeed();
+            MediaManager.Instance.close();
             Application.Current.Shutdown();
         }
      
